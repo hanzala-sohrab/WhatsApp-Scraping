@@ -1,5 +1,5 @@
 [config]
-BROWSER = firefox or chrome
-BROWSER_PATH = /home/user/.mozilla/firefox/xxxxxxxx.default or /home/user/.config/google-chrome/Default (this paths are for Linux)
-NAME = person
+BROWSER = firefox
+BROWSER_PATH = /home/hanzala/.mozilla/firefox/2flc4sqo.default-release-1
+NAME = Data Science & Analytics
 PAGE = https://web.whatsapp.com/
