@@ -1,7 +1,7 @@
 import configparser
 import time
 
-from whatsapp_scrapper import WhatsappScrapper
+from whatsapp_scraper import WhatsappScrapper
 
 
 def load_settings():
