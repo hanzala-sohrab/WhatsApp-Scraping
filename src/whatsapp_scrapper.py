@@ -82,39 +82,49 @@ class WhatsappScrapper():
         """
         Reading the last message that you got in from the chatter
         """
-        for messages in self.driver.find_elements_by_xpath(
-                "//div[contains(@class,'message-in')]"):
-            try:
-                message = ""
-                emojis = []
+        message = ""
+        link = ""
+        # emojis = []
+        # for messages in self.driver.find_elements_by_xpath(
+        #         "//div[contains(@class,'message-in')]"):
+        #     try:
+        #         # message = ""
+        #         # emojis = []
 
-                message_container = messages.find_element_by_xpath(
-                    ".//div[@class='copyable-text']")
+        #         message_container = messages.find_element_by_xpath(".//div[@class='copyable-text']")
+        #         link_container = messages.find_element_by_tag_name("a")
 
-                message = message_container.find_element_by_xpath(
-                    ".//span[contains(@class,'selectable-text invisible-space copyable-text')]"
-                ).text
+        #         message += message_container.find_element_by_xpath(".//span[contains(@class,'selectable-text invisible-space copyable-text')]").text + "\n"
+        #         link += link_container.text() + "\n"
 
-                for emoji in message_container.find_elements_by_xpath(
-                        ".//img[contains(@class,'selectable-text invisible-space copyable-text')]"
-                ):
-                    emojis.append(emoji.get_attribute("data-plain-text"))
+        #         # for emoji in message_container.find_elements_by_xpath(
+        #         #         ".//img[contains(@class,'selectable-text invisible-space copyable-text')]"
+        #         # ):
+        #         #     emojis.append(emoji.get_attribute("data-plain-text"))
+        #         # return message, emojis
+        #         # return message
+        #     except NoSuchElementException:  # In case there are only emojis in the message
+        #         try:
+        #             # message = ""
+        #             # emojis = []
+        #             message_container = messages.find_element_by_xpath(".//div[contains(@class,'copyable-text')]")
 
-            except NoSuchElementException:  # In case there are only emojis in the message
-                try:
-                    message = ""
-                    emojis = []
-                    message_container = messages.find_element_by_xpath(
-                        ".//div[contains(@class,'copyable-text')]")
+        #             # for emoji in message_container.find_elements_by_xpath(
+        #             #         ".//img[contains(@class,'selectable-text invisible-space copyable-text')]"
+        #             # ):
+        #             #     emojis.append(emoji.get_attribute("data-plain-text"))
+        #             # return message, emojis
+        #             # return message
+        #         except NoSuchElementException:
+        #             pass
+        elems = self.driver.find_elements_by_xpath("//a[@href]")
+        for elem in elems:
+            # print(elem.get_attribute("href"))
+            link += elem.get_attribute("href") + "\n"
 
-                    for emoji in message_container.find_elements_by_xpath(
-                            ".//img[contains(@class,'selectable-text invisible-space copyable-text')]"
-                    ):
-                        emojis.append(emoji.get_attribute("data-plain-text"))
-                except NoSuchElementException:
-                    pass
-
-        return message, emojis
+        # return message, emojis
+        # return message
+        return link
 
     def send_message(self, text):
         """
